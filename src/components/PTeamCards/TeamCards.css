@@ -1,0 +1,159 @@
+.pc-sticky {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--base-100);
+}
+
+.pc-sticky-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 250vw;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+
+.pc-sticky-header h1 {
+  margin: 0;
+  color: var(--base-400);
+  font-size: 28vw;
+  letter-spacing: -0.5rem;
+  line-height: 100%;
+}
+
+.pc-card {
+  position: absolute;
+  top: 10%;
+  left: 100%;
+  width: 325px;
+  height: 500px;
+  background-color: var(--base-400);
+  border-radius: 1rem;
+  padding: 1rem;
+  will-change: transform;
+  z-index: 2;
+}
+
+#card-1.pc-card {
+  background-color: var(--accent-1);
+}
+
+#card-2.pc-card {
+  background-color: var(--accent-2);
+}
+
+#card-3.pc-card {
+  background-color: var(--accent-3);
+}
+
+#card-4.pc-card {
+  background-color: var(--accent-4);
+}
+
+#card-5.pc-card {
+  background-color: var(--accent-5);
+}
+
+.pc-card .pc-card-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.pc-card .pc-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pc-card-content {
+  width: 100%;
+  height: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  padding: 1rem;
+}
+
+.pc-card-content h2 {
+  font-size: 2.5rem;
+  letter-spacing: -0.05rem;
+}
+
+@media (max-width: 999px) {
+  .team-desktop.pc-sticky {
+    display: none;
+  }
+
+  .pc-team-mobile {
+    display: block;
+    z-index: 0;
+  }
+
+  .pc-team-mobile {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    background-color: var(--base-100);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .pc-mobile-header {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: block;
+    will-change: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .pc-mobile-header h1 {
+    margin: 0 0 0.5rem 0;
+    color: var(--base-400);
+    font-size: 2.25rem;
+    letter-spacing: -0.06rem;
+    line-height: 110%;
+  }
+
+  .pc-card {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    max-width: 680px;
+    margin: 0 auto;
+    will-change: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .pc-card .pc-card-img {
+    height: 240px;
+    margin-bottom: 1rem;
+  }
+
+  .pc-card-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .pc-team-mobile {
+    display: none;
+  }
+}

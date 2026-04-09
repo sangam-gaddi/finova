@@ -1,0 +1,116 @@
+/* Featured Work Section wrapper */
+.pc-featured-work-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 8rem 0 6rem 0;
+  background-color: var(--base-100);
+  overflow: hidden;
+}
+
+.pc-featured-work-section .pc-fw-header-content {
+  margin: 0 auto;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  text-align: center;
+}
+
+.pc-featured-work-section .pc-fw-header {
+  width: 50%;
+}
+
+.pc-featured-work-section .pc-fw-header-content .pc-fw-arrow {
+  width: 3rem;
+}
+
+.pc-featured-work-section .pc-fw-header-content .pc-fw-header-copy {
+  width: 50%;
+}
+
+/* Featured work header text styles */
+.pc-fw-h1 {
+  font-size: 8rem;
+  font-family: "Big Shoulders Display";
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.125rem;
+  color: var(--base-400);
+}
+
+.pc-fw-p-lg {
+  font-family: "PP Neue Montreal";
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--base-400);
+}
+
+/* Client Reviews Header section */
+.pc-client-reviews-header-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--base-100);
+  overflow: hidden;
+}
+
+.pc-client-reviews-header-container .pc-cr-header-content {
+  margin: 0 auto;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  text-align: center;
+}
+
+.pc-client-reviews-header-container .pc-cr-header {
+  width: 50%;
+}
+
+.pc-client-reviews-header-container .pc-cr-header-content .pc-cr-arrow {
+  width: 3rem;
+}
+
+.pc-client-reviews-header-container .pc-cr-header-content .pc-cr-header-copy {
+  width: 50%;
+}
+
+/* pc-container for these sections */
+.pc-home-container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+  .pc-featured-work-section .pc-fw-header,
+  .pc-featured-work-section .pc-fw-header-content,
+  .pc-featured-work-section .pc-fw-header-content .pc-fw-header-copy,
+  .pc-client-reviews-header-container .pc-cr-header,
+  .pc-client-reviews-header-container .pc-cr-header-content,
+  .pc-client-reviews-header-container .pc-cr-header-content .pc-cr-header-copy {
+    width: 100%;
+  }
+
+  .pc-fw-h1 {
+    font-size: 3rem;
+    letter-spacing: 0;
+  }
+}
+
+@media (min-width: 2400px) {
+  .pc-fw-h1 {
+    font-size: 10rem;
+  }
+}

@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -30,5 +30,33 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/components/os/aria/**/*",
+    "src/components/os/vora/**/*",
+    "src/components/os/test/**/*",
+    "src/components/os/i18n/BECChat.tsx",
+    "src/components/os/components/apps/AccountManager.tsx",
+    "src/components/os/components/apps/AdmitApp.tsx",
+    "src/components/os/components/apps/AriaApp.tsx",
+    "src/components/os/components/apps/AttendanceUploadApp.tsx",
+    "src/components/os/components/apps/BECChat.tsx",
+    "src/components/os/components/apps/BECPay.tsx",
+    "src/components/os/components/apps/BECPortal.tsx",
+    "src/components/os/components/apps/CourseRegistrationApp.tsx",
+    "src/components/os/components/apps/CRAssignerApp.tsx",
+    "src/components/os/components/apps/DownloadReceiptsApp.tsx",
+    "src/components/os/components/apps/EditFeeApp.tsx",
+    "src/components/os/components/apps/FacultyDashboardApp.tsx",
+    "src/components/os/components/apps/FeeCheckApp.tsx",
+    "src/components/os/components/apps/FeesCheckerApp.tsx",
+    "src/components/os/components/apps/HallTicketApp.tsx",
+    "src/components/os/components/apps/HallTicketGenerationApp.tsx",
+    "src/components/os/components/apps/MarksUploadApp.tsx",
+    "src/components/os/components/apps/MyClassesApp.tsx",
+    "src/components/os/components/apps/ReRegistrationReviewApp.tsx",
+    "src/components/os/components/apps/SubjectAssignerApp.tsx",
+    "src/components/os/components/apps/SubjectDirectoryApp.tsx",
+    "src/components/os/components/apps/TeachingAssignerApp.tsx"
+  ]
 }

@@ -1,0 +1,128 @@
+.pc-footer {
+  position: relative;
+  width: 100vw;
+  height: 100.5svh;
+  background-color: var(--base-400);
+  color: var(--base-100);
+  padding: 2rem;
+}
+
+.pc-footer .pc-explosion-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pc-footer img.pc-explosion-particle-img {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  width: var(--particle-size, 300px) !important;
+  height: auto !important;
+  border-radius: 1rem;
+  object-fit: cover;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+
+.pc-footer .pc-footer-header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.pc-footer .pc-footer-container {
+  width: 100%;
+  height: 100%;
+}
+
+.pc-footer .pc-footer-byline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  padding: 2rem;
+}
+
+.pc-footer .pc-footer-byline > div {
+  flex: 1;
+  display: flex;
+}
+
+.pc-footer .pc-footer-copyright {
+  justify-content: flex-end;
+}
+
+.pc-footer .pc-footer-author {
+  justify-content: center;
+  color: var(--base-300);
+}
+
+.pc-footer .pc-footer-time {
+  color: var(--base-300);
+  justify-content: flex-start;
+}
+
+.pc-footer .pc-footer-time span {
+  color: var(--base-100);
+}
+
+.pc-footer .pc-footer-byline p {
+  font-size: 0.9rem;
+  font-family: "PP Neue Montreal";
+  color: var(--base-300);
+}
+
+.pc-footer h1 {
+  font-family: "Big Shoulders Display";
+  font-size: 8rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.125rem;
+  color: var(--base-100);
+}
+
+@media (max-width: 1000px) {
+  .pc-footer {
+    height: 100svh;
+  }
+
+  .pc-footer .pc-explosion-container {
+    display: none;
+  }
+
+  .pc-footer .pc-footer-header-content {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .pc-footer .pc-footer-copyright {
+    display: none !important;
+  }
+
+  .pc-footer .pc-footer-author {
+    justify-content: flex-end;
+  }
+
+  .pc-footer .pc-footer-byline {
+    padding: 1.25rem;
+  }
+
+  .pc-footer h1 {
+    font-size: 3rem;
+  }
+}

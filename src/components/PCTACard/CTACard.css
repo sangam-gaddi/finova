@@ -1,0 +1,121 @@
+.pc-cta {
+  background-color: var(--base-100);
+}
+
+.pc-container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  max-width: 2000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding-bottom: 10rem;
+}
+
+.pc-cta-copy {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  padding: 4rem 0;
+}
+
+.pc-cta-copy .pc-cta-col {
+  flex: 1;
+}
+
+.pc-cta-copy .pc-cta-col:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pc-cta-card {
+  margin: 0 auto;
+  width: 70%;
+  background-color: var(--base-400);
+  color: var(--base-100);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.pc-cta-card .pc-cta-card-copy {
+  display: flex;
+  gap: 2rem;
+}
+
+.pc-cta-card .pc-cta-card-copy .pc-cta-card-col {
+  flex: 1;
+}
+
+.pc-cta-card .pc-cta-card-copy .pc-cta-card-col:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pc-cta-card .pc-cta-card-copy .pc-cta-card-col:nth-child(2) p {
+  margin-bottom: 2rem;
+  color: var(--base-100);
+  font-family: "PP Neue Montreal";
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.pc-cta-card .pc-cta-card-copy .pc-cta-card-col:nth-child(2) p:nth-child(2) {
+  margin-bottom: 4rem;
+}
+
+.pc-sm {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Geist Mono";
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--base-300);
+  letter-spacing: 0.1rem;
+}
+
+.pc-lg {
+  font-family: "PP Neue Montreal";
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--base-400);
+}
+
+@media (max-width: 1000px) {
+  .pc-cta-copy {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .pc-cta-card {
+    width: 100%;
+  }
+
+  .pc-cta-card .pc-cta-card-copy {
+    flex-direction: column;
+  }
+
+  .pc-container {
+    gap: 2rem;
+  }
+}
+
+.pc-cta-p {
+  margin-bottom: 2rem;
+  color: var(--base-100);
+  font-family: "PP Neue Montreal";
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.pc-cta-p-last {
+  margin-bottom: 4rem;
+}
+

@@ -1,0 +1,129 @@
+.pc-client-reviews {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--base-100);
+}
+
+.pc-client-reviews .pc-review-card {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.pc-client-reviews .pc-review-card-container {
+  position: relative;
+  width: 60%;
+  height: 50%;
+  display: flex;
+  padding: 2rem;
+  border-radius: 1rem;
+  will-change: transform;
+}
+
+.pc-client-reviews #pc-review-card-1 {
+  background-color: var(--base-200);
+}
+
+.pc-client-reviews #pc-review-card-2 {
+  background-color: var(--base-400);
+  color: var(--base-100);
+}
+
+.pc-client-reviews #pc-review-card-3 {
+  background-color: var(--accent-1);
+  color: var(--base-100);
+}
+
+.pc-client-reviews #pc-review-card-4 {
+  background-color: var(--base-200);
+}
+
+.pc-client-reviews #pc-review-card-5 {
+  background-color: var(--base-500);
+}
+
+.pc-client-reviews #pc-review-card-6 {
+  background-color: var(--base-400);
+  color: var(--base-100);
+}
+
+.pc-client-reviews .pc-review-card-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.pc-client-reviews h3.pc-review-card-text {
+  font-size: 3rem;
+  letter-spacing: 0;
+  font-family: "Big Shoulders Display";
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.pc-client-reviews .pc-cap {
+  text-transform: uppercase;
+  font-family: "PP Pangram Sans";
+  font-size: 0.9rem;
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pc-client-reviews .pc-sm {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Geist Mono";
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.1rem;
+}
+
+.pc-client-reviews .pc-review-card-client-company.pc-sm {
+  color: var(--base-100);
+  opacity: 0.4;
+}
+
+.pc-client-reviews #pc-review-card-1 .pc-review-card-client-company.pc-sm,
+.pc-client-reviews #pc-review-card-4 .pc-review-card-client-company.pc-sm,
+.pc-client-reviews #pc-review-card-5 .pc-review-card-client-company.pc-sm {
+  color: var(--base-400);
+}
+
+@media (max-width: 1000px) {
+  .pc-client-reviews .pc-review-card-container {
+    flex-direction: column;
+    gap: 0;
+    width: 90%;
+    height: 100%;
+    padding: 1.25rem;
+  }
+
+  .pc-client-reviews .pc-review-card-content-wrapper {
+    width: 100%;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .pc-client-reviews .pc-review-card-content {
+    height: 100%;
+  }
+
+  .pc-client-reviews h3.pc-review-card-text {
+    font-size: 2rem;
+  }
+
+  .pc-client-reviews .pc-review-card {
+    padding: 1.25rem 0 0 0;
+  }
+}

@@ -1,0 +1,94 @@
+.pc-spotlight {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--base-100);
+  overflow: hidden;
+}
+
+.pc-spotlight .pc-marquees {
+  position: relative;
+  width: 100%;
+  height: 150svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pc-spotlight .pc-marquee-container {
+  position: relative;
+  width: 125%;
+  height: 250px;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pc-spotlight .pc-marquee {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0, -50%, 0);
+  display: flex;
+  gap: 1em;
+  will-change: transform;
+}
+
+.pc-spotlight #pc-marquee-1 .pc-marquee,
+.pc-spotlight #pc-marquee-3 .pc-marquee {
+  transform: translate3d(-15%, -50%, 0);
+}
+
+.pc-spotlight .pc-marquee-img-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.pc-spotlight .pc-marquee-img-item.pc-marquee-text-item {
+  flex: 1;
+}
+
+.pc-spotlight .pc-marquee-img-item h1 {
+  text-transform: uppercase;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-weight: 900;
+  font-size: 4.25rem;
+  line-height: 0.9;
+  letter-spacing: -0.125rem;
+}
+
+.pc-spotlight .pc-marquee-img-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pc-spotlight .pc-marquee-img-item h1 .char {
+  will-change: font-weight;
+}
+
+@media (max-width: 1000px) {
+  .pc-spotlight .pc-marquees {
+    height: 100svh;
+  }
+
+  .pc-spotlight .pc-marquee-container {
+    width: 250%;
+    height: 150px;
+  }
+
+  .pc-spotlight #pc-marquee-2 .pc-marquee,
+  .pc-spotlight #pc-marquee-4 .pc-marquee {
+    transform: translate3d(-35%, -50%, 0);
+  }
+
+  .pc-spotlight .pc-marquee-img-item h1 {
+    font-size: 2.5rem;
+  }
+}

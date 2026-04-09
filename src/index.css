@@ -1,0 +1,171 @@
+:root {
+  --color-accent: #d6ff62;
+  --color-accent-soft: #d6ff62;
+  --color-accent-deep: #8aa23f;
+  --gold-map-color: url("/textures/gold/Metal007_1K-PNG_Color.png");
+  --gold-map-roughness: url("/textures/gold/Metal007_1K-PNG_Roughness.png");
+  --gold-map-displacement: url("/textures/gold/Metal007_1K-PNG_Displacement.png");
+  --gold-map-metalness: url("/textures/gold/Metal007_1K-PNG_Metalness.png");
+  --hero-foil-color: url("/textures/gold-foil/Foil002_1K-PNG_Color.png");
+  --hero-foil-displacement: url("/textures/gold-foil/Foil002_1K-PNG_Displacement.png");
+  --hero-foil-roughness: url("/textures/gold-foil/Foil002_1K-PNG_Roughness.png");
+  --hero-foil-metalness: url("/textures/gold-foil/Foil002_1K-PNG_Metalness.png");
+  --hero-foil-ao: url("/textures/gold-foil/Foil002_1K-PNG_AmbientOcclusion.png");
+  --color-accent-texture: none;
+  --color-accent-texture-blend: normal;
+  --color-accent-texture-size: auto;
+  --color-accent-metallic: linear-gradient(
+    135deg,
+    #6f5414 0%,
+    #b78a22 18%,
+    #f6e39b 35%,
+    #c89a2d 52%,
+    #8c6a16 70%,
+    #f1d274 86%,
+    #6f5414 100%
+  );
+  --color-light: #fff;
+  --color-dark: #1d1d1d;
+}
+
+@font-face {
+  font-family: "FK Screamer";
+  font-weight: 300;
+  src: url("./assets/fonts/fk-screamer.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-weight: 200;
+  src: url("./assets/fonts/pp-editorial-new-thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-weight: 300;
+  src: url("./assets/fonts/pp-editorial-new-ultralight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-weight: 500;
+  src: url("./assets/fonts/pp-editorial-new-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-weight: 700;
+  src: url("./assets/fonts/pp-editorial-new-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-weight: 800;
+  src: url("./assets/fonts/pp-editorial-new-heavy.ttf") format("truetype");
+}
+
+.app-theme * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-theme img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-theme h1 {
+  text-transform: uppercase;
+  font-family: "FK Screamer";
+  font-size: 16vw;
+  font-weight: 300;
+  line-height: 0.8;
+}
+
+.app-theme h2 {
+  text-transform: uppercase;
+  font-family: "FK Screamer";
+  font-size: 12vw;
+  font-weight: 300;
+  line-height: 0.8;
+}
+
+.app-theme h3 {
+  text-transform: uppercase;
+  font-family: "FK Screamer";
+  font-size: 4vw;
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.app-theme p.primary {
+  text-transform: uppercase;
+  font-family: "FK Screamer";
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.app-theme p,
+.app-theme span,
+.app-theme a {
+  text-decoration: none;
+  font-family: "PP Editorial New";
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+.app-theme button {
+  position: relative;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0.5em 1em 0.75em 1em;
+  background-color: var(--color-accent) !important;
+}
+
+.app-theme button::before {
+  content: none;
+}
+
+.app-theme button::after {
+  content: none;
+}
+
+.app-theme button a {
+  color: var(--color-dark);
+  text-transform: uppercase;
+  font-family: "FK Screamer";
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.app-theme .page {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-dark);
+}
+
+@media (max-width: 900px) {
+  .app-theme h1 {
+    font-size: 24vw;
+  }
+
+  .app-theme h2 {
+    font-size: 20vw;
+  }
+
+  .app-theme h3 {
+    font-size: 10vw;
+  }
+}
