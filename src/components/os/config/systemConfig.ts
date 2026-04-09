@@ -14,7 +14,7 @@ export const BRAND = {
     { name: 'Blue', value: '#3b82f6' },     // Blue-500 (Classic Tech Blue)
     { name: 'Indigo', value: '#5755e4' },   // Indigo-500 (Deep Modern Blue)
     { name: 'Violet', value: '#8b5cf6' },   // Violet-500 (Bright Purple)
-    { name: 'BEC VORTEX OS Fuchsia', value: '#d453f6' }, // BEC VORTEX OS Fuchsia
+    { name: 'FINOVA OS Fuchsia', value: '#d453f6' }, // FINOVA OS Fuchsia
   ],
 
   // Desktop wallpapers
@@ -25,7 +25,7 @@ export const BRAND = {
     { id: 'aurora', name: 'Aurora', src: '/os-assets/images/wallpaper-aurora.avif' },
     { id: 'lake', name: 'Lake', src: '/os-assets/images/wallpaper-lake.avif' },
     { id: 'bigsur', name: 'Big Sur', src: '/os-assets/images/wallpaper-bigsur.jpg' },
-    { id: 'bec', name: 'BEC Vortex', src: '/os-assets/images/wallpaper-bec.png' },
+    { id: 'bec', name: 'FINOVA', src: '/os-assets/images/wallpaper-bec.png' },
   ],
 } as const;
 

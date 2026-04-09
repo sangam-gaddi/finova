@@ -1182,7 +1182,7 @@ export const tr: TranslationDict = {
     },
     "finishing": {
       "title": "Her Şey Hazır!",
-      "subtitle": "BEC VORTEX OS hazır. Giriş ekranına yönlendiriliyorsunuz..."
+      "subtitle": "FINOVA OS hazır. Giriş ekranına yönlendiriliyorsunuz..."
     },
     "search": {
       "placeholder": "Dil ara...",

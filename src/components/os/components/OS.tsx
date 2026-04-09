@@ -198,7 +198,7 @@ export default function OS() {
                                     <span>Your role:</span>
                                     <span className="font-bold text-white/70">{effectiveRole || 'Unknown'}</span>
                                 </div>
-                                <p className="text-xs text-white/30 mt-4">BEC Vortex enforces strict Role-Based Access Control.</p>
+                                <p className="text-xs text-white/30 mt-4">FINOVA enforces strict Role-Based Access Control.</p>
                             </div>
                         </div>
                     ),

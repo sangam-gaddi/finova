@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect, memo, useRef, forwardRef, useCallback } from 'react';
 import { useAppContext } from '@/components/os/components/AppContext';
+import { ARIAIsland } from '@/components/os/aria/ARIAIsland';
+import { VORAIsland } from '@/components/os/vora/VORAIsland';
 
 export interface DesktopIcon {
   id: string;
@@ -60,12 +62,12 @@ const ROLE_APP_MAP: { role: string; label: string; color: string; apps: string[]
   { role: 'STUDENT', label: '🎓 Student', color: 'text-indigo-400', apps: ['bec-portal', 'course-registration', 'bec-pay', 'fee-check', 'download-receipts', 'hall-ticket'] },
 ];
 
-// ── BEC Vortex draggable app icons on the desktop ───────────────────────────
+// ── FINOVA draggable app icons on the desktop ───────────────────────────
 const ICON_W = 68;   // icon + label column width
 const ICON_H = 82;   // total height per icon (icon + label)
 const ICON_GAP = 12; // vertical gap
 
-function BECVortexDesktopIcons({ onOpenApp }: { onOpenApp: (type: string) => void }) {
+function FINOVADesktopIcons({ onOpenApp }: { onOpenApp: (type: string) => void }) {
   const allApps = getAllApps();
   const appMap = new Map(allApps.map(a => [a.id, a]));
   const [currentRole, setCurrentRole] = useState<string | null>(null);
@@ -618,8 +620,12 @@ function DesktopComponent({ onDoubleClick, icons, onUpdateIconsPositions, onIcon
             </ContextMenu>
           ))}
 
-          {/* ── BEC Vortex App Shortcuts (Draggable Icons) ── */}
-          <BECVortexDesktopIcons onOpenApp={onOpenApp} />
+          {/* ── FINOVA App Shortcuts (Draggable Icons) ── */}
+          <FINOVADesktopIcons onOpenApp={onOpenApp} />
+          
+          {/* AI Islands */}
+          <ARIAIsland />
+          <VORAIsland onOpenApp={onOpenApp} onCloseApp={() => {}} />
         </div>
       </ContextMenuTrigger>
       <ContextMenuContent className="w-56">

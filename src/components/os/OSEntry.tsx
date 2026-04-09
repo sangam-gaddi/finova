@@ -7,7 +7,7 @@ const OSApp = nextDynamic(
     ssr: false,
     loading: () => (
       <div style={{ width: '100vw', height: '100vh', backgroundColor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: 'white', fontFamily: 'monospace' }}>Booting BEC VORTEX OS Kernel...</p>
+        <p style={{ color: 'white', fontFamily: 'monospace' }}>Booting FINOVA OS Kernel...</p>
       </div>
     ),
   }

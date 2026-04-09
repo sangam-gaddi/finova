@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, memo } from 'react';
 
 const pkgMeta = {
-  build: { productName: 'BEC VORTEX OS' }
+  build: { productName: 'FINOVA OS' }
 };
 import { Orbit } from 'lucide-react';
 import { useThemeColors } from '@/components/os/hooks/useThemeColors';

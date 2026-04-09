@@ -1,6 +1,6 @@
 "use client";
 ﻿/**
- * Minimal ID3 v2.3 / v2.4 parser for BEC VORTEX OS.
+ * Minimal ID3 v2.3 / v2.4 parser for FINOVA OS.
  * Specifically handles TIT2 (Title), TPE1 (Artist), and TALB (Album).
  */
 

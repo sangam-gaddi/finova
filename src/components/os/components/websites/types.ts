@@ -2,7 +2,7 @@
 ﻿/**
  * Website System Types
  *
- * Defines the structure for fake websites in BEC VORTEX OS Browser.
+ * Defines the structure for fake websites in FINOVA OS Browser.
  * Each website can have its own UI, logic, and behavior.
  */
 

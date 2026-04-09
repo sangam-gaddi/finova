@@ -2,7 +2,7 @@
 ﻿/**
  * Website Registry
  *
- * Central registry of all fake websites available in BEC VORTEX OS Browser.
+ * Central registry of all fake websites available in FINOVA OS Browser.
  * Add new websites here to make them accessible via the browser.
  */
 

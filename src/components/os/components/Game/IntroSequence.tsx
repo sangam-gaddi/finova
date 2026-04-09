@@ -153,7 +153,7 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1 }}
             >
-              BEC VORTEX
+              FINOVA
             </motion.h1>
 
             {/* Tagline */}

@@ -1182,7 +1182,7 @@ export const zh: TranslationDict = {
     },
     "finishing": {
       "title": "一切就绪！",
-      "subtitle": "BEC VORTEX OS 已准备就绪。正在跳转到登录界面..."
+      "subtitle": "FINOVA OS 已准备就绪。正在跳转到登录界面..."
     },
     "search": {
       "placeholder": "搜索语言...",

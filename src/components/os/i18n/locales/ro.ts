@@ -1182,7 +1182,7 @@ export const ro: TranslationDict = {
     },
     "finishing": {
       "title": "Ești gata!",
-      "subtitle": "BEC VORTEX OS este pregătit. Te redirecționăm către ecranul de autentificare..."
+      "subtitle": "FINOVA OS este pregătit. Te redirecționăm către ecranul de autentificare..."
     },
     "search": {
       "placeholder": "Caută limbă...",

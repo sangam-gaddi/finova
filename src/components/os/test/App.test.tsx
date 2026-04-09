@@ -65,7 +65,7 @@ vi.mock('../components/Game/GameRoot', () => ({
     GameRoot: ({ children }: any) => <>{children}</>,
 }));
 
-describe('BEC VORTEX OS Integration', () => {
+describe('FINOVA OS Integration', () => {
     beforeEach(() => {
         localStorageMock.clear();
         vi.clearAllMocks();

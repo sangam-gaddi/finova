@@ -1182,7 +1182,7 @@ export const hi: TranslationDict = {
     },
     "finishing": {
       "title": "तुम सब सेट हो!",
-      "subtitle": "BEC VORTEX OS तैयार है। आपको लॉगिन स्क्रीन पर रीडायरेक्ट किया जा रहा है..."
+      "subtitle": "FINOVA OS तैयार है। आपको लॉगिन स्क्रीन पर रीडायरेक्ट किया जा रहा है..."
     },
     "search": {
       "placeholder": "भाषा खोजें...",

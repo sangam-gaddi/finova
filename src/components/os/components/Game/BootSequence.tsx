@@ -10,7 +10,7 @@ import { APP_REGISTRY } from '../../config/appRegistry';
 const pkgMeta = {
     version: '0.8.5',
     name: 'bec-vortex-os',
-    build: { productName: 'BEC VORTEX OS' },
+    build: { productName: 'FINOVA OS' },
     author: 'BEC Team'
 };
 

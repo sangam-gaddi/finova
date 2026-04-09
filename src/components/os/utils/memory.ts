@@ -1,6 +1,6 @@
 "use client";
 ﻿/**
- * BEC VORTEX OS Memory Management Utilities
+ * FINOVA OS Memory Management Utilities
  * 
  * Organizes storage into two tiers:
  * - Soft Memory: Preferences and UI state (safe to reset)

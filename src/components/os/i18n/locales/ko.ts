@@ -1182,7 +1182,7 @@ export const ko: TranslationDict = {
     },
     "finishing": {
       "title": "준비 완료!",
-      "subtitle": "BEC VORTEX OS가 준비되었습니다. 로그인 화면으로 리디렉션 중..."
+      "subtitle": "FINOVA OS가 준비되었습니다. 로그인 화면으로 리디렉션 중..."
     },
     "search": {
       "placeholder": "언어 검색...",

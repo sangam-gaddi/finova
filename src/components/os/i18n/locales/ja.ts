@@ -1182,7 +1182,7 @@ export const ja: TranslationDict = {
     },
     "finishing": {
       "title": "準備完了！",
-      "subtitle": "BEC VORTEX OS の準備が整いました。ログイン画面にリダイレクトします..."
+      "subtitle": "FINOVA OS の準備が整いました。ログイン画面にリダイレクトします..."
     },
     "search": {
       "placeholder": "言語を検索...",

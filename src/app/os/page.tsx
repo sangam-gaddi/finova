@@ -3,7 +3,7 @@ import '@/components/os/os-styles.css'; // Load OS-specific styles only on this 
 import OSEntry from '@/components/os/OSEntry';
 
 export const metadata = {
-    title: 'BEC VORTEX OS',
+    title: 'FINOVA OS',
     description: 'High-fidelity OS hacking simulator',
 };
 

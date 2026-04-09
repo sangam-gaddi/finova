@@ -7,7 +7,7 @@ const pkgMeta = {
   version: '0.8.5',
   author: 'BEC Team <hello@mental.os>',
   homepage: 'https://github.com/bec-team/bec-vortex-os.js',
-  build: { productName: 'BEC VORTEX OS' }
+  build: { productName: 'FINOVA OS' }
 };
 import { useTerminalLogic } from '@/components/os/hooks/useTerminalLogic';
 

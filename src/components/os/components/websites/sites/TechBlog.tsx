@@ -29,9 +29,9 @@ interface Article {
 const articles: Article[] = [
   {
     id: 1,
-    title: 'BEC VORTEX OS 0.8.5: Security Hardening & The Polish Pass',
+    title: 'FINOVA OS 0.8.5: Security Hardening & The Polish Pass',
     excerpt: 'The latest update brings critical security fixes, 100% localization parity across 12 languages, and a massive UI overhaul for the DevCenter.',
-    author: 'BEC VORTEX',
+    author: 'FINOVA',
     date: 'January 30, 2026',
     category: 'Changelog',
     icon: Shield,
@@ -45,7 +45,7 @@ const articles: Article[] = [
     content: `
       <div class="space-y-6">
         <p class="text-xl text-gray-600 leading-relaxed font-light">
-          We're excited to announce <strong class="text-gray-900 font-medium">BEC VORTEX OS 0.8.5</strong>, a release focused on stability, security, and refining the core experience. While our previous updates introduced major apps like Photos and Messages, this patch ensures the foundation is rock-solid.
+          We're excited to announce <strong class="text-gray-900 font-medium">FINOVA OS 0.8.5</strong>, a release focused on stability, security, and refining the core experience. While our previous updates introduced major apps like Photos and Messages, this patch ensures the foundation is rock-solid.
         </p>
 
         <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Security First</h3>
@@ -55,7 +55,7 @@ const articles: Article[] = [
 
         <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Global Localization</h3>
         <p class="text-gray-600 leading-relaxed">
-          BEC VORTEX OS is for everyone. We have achieved <strong>100% translation parity</strong> across all 12 supported languages. Whether you're using the system in English, German, Romanian, or Japanese, every UI element—from the Bios settings to the DevCenter—is now fully localized.
+          FINOVA OS is for everyone. We have achieved <strong>100% translation parity</strong> across all 12 supported languages. Whether you're using the system in English, German, Romanian, or Japanese, every UI element—from the Bios settings to the DevCenter—is now fully localized.
         </p>
         
         <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">DevCenter Overhaul</h3>
@@ -85,7 +85,7 @@ const articles: Article[] = [
     id: 2,
     title: '400 Stars & Counting: Thank You!',
     excerpt: 'We just hit a major milestone on GitHub! A huge thank you to our growing community of developers, hackers, and cyberpunk enthusiasts.',
-    author: 'BEC VORTEX OS',
+    author: 'FINOVA OS',
     date: 'January 30, 2026',
     category: 'Community',
     icon: Star,
@@ -99,7 +99,7 @@ const articles: Article[] = [
     content: `
       <div class="space-y-6">
         <p class="text-xl text-gray-600 leading-relaxed font-light">
-          We are incredibly humbled to announce that <strong>BEC VORTEX OS</strong> has reached 400 stars on GitHub.
+          We are incredibly humbled to announce that <strong>FINOVA OS</strong> has reached 400 stars on GitHub.
         </p>
         
         <p class="text-gray-600 leading-relaxed">
@@ -236,7 +236,7 @@ export function TechBlog(_props: WebsiteProps) {
             </div>
             <h2 className="text-3xl font-bold mb-4">Join our Community</h2>
             <p className="text-indigo-100 mb-8 max-w-md mx-auto text-lg">
-              Connect with other developers, share your rices, and get direct support from the BEC VORTEX OS team.
+              Connect with other developers, share your rices, and get direct support from the FINOVA OS team.
             </p>
             <a
               href="https://discord.gg/AtAVfRDYhG"
@@ -299,7 +299,7 @@ export function TechBlog(_props: WebsiteProps) {
           </div>
         </div>
         <div className="pt-6 border-t border-gray-300 text-sm text-gray-600 text-center">
-          ©2026 TechBlog. A BEC VORTEX sponsored news outlet.
+          ©2026 TechBlog. A FINOVA sponsored news outlet.
         </div>
       </WebsiteFooter>
 

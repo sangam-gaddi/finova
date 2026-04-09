@@ -27,7 +27,7 @@ import { useI18n } from '../i18n/index';
 
 const pkgMeta = {
   version: '0.8.5',
-  build: { productName: 'BEC VORTEX OS' }
+  build: { productName: 'FINOVA OS' }
 };
 import { BRAND } from '@/components/os/config/systemConfig';
 

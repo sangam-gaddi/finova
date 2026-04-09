@@ -1182,7 +1182,7 @@ export const de: TranslationDict = {
     },
     "finishing": {
       "title": "Alles bereit!",
-      "subtitle": "BEC VORTEX OS ist bereit. Weiterleitung zum Anmeldebildschirm..."
+      "subtitle": "FINOVA OS ist bereit. Weiterleitung zum Anmeldebildschirm..."
     },
     "search": {
       "placeholder": "Sprache suchen...",

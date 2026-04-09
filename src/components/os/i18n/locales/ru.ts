@@ -1182,7 +1182,7 @@ export const ru: TranslationDict = {
     },
     "finishing": {
       "title": "Все готово!",
-      "subtitle": "BEC VORTEX OS готова. Перенаправление на экран входа..."
+      "subtitle": "FINOVA OS готова. Перенаправление на экран входа..."
     },
     "search": {
       "placeholder": "Поиск языка...",

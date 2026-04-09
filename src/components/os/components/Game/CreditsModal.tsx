@@ -8,8 +8,8 @@ import { feedback } from '@/components/os/services/soundFeedback';
 const pkgMeta = {
     version: '0.8.5',
     license: 'AGPL-3.0',
-    homepage: 'https://github.com/sangam-gaddi/BecVortex',
-    build: { productName: 'BEC VORTEX OS' }
+    homepage: 'https://github.com/sangam-gaddi/FINOVA',
+    build: { productName: 'FINOVA OS' }
 };
 
 
@@ -38,34 +38,25 @@ interface ContributorCategory {
 const CREDITS_DATA: ContributorCategory[] = [
     {
         id: 'core',
-        title: "Core Team",
+        title: "Core Team (Plata-o-Plomo)",
         icon: Brain,
         type: 'people',
         contributors: [
             {
                 name: "Sangam Gaddi",
-                role: "Main Architect & Original Creator",
-                github: "https://github.com/sangam-gaddi",
-                description: "Wired and created BEC Vortex OS from scratch — full system architecture, core platform, payment system, and technical leadership.",
-                socials: [
-                    { label: "LI/sangam-gaddi", url: "https://www.linkedin.com/in/sangam-gaddi-8a9a84292/" },
-                    { label: "GH/sangam-gaddi", url: "https://github.com/sangam-gaddi" },
-                ]
+                role: "Main Architect & Builder",
             },
             {
                 name: "Samarth Sugandhi",
-                role: "UI / UX Designer & Event Organizer App",
-                description: "Crafted the visual systems and interaction design of BEC Vortex OS, and handled the Event Organizer application.",
+                role: "UI / UX Designer",
             },
             {
-                name: "Yateesh Matuur",
-                role: "AI Engineer — Voice Agent (ARIA)",
-                description: "Handled the AI integrations, specializing in the ARIA voice agent powered by LiveKit, Deepgram, Cerebras, and Cartesia.",
+                name: "Vikas Kannur",
+                role: "Backend & Systems",
             },
             {
-                name: "Arshad",
-                role: "System Hierarchy & Role-Based Architecture",
-                description: "Designed the main system hierarchy and role-based access control (RBAC) model that governs the entire platform.",
+                name: "Aditya Pattar",
+                role: "AI Embeddings & Logic",
             },
         ]
     },
@@ -102,16 +93,15 @@ const CREDITS_DATA: ContributorCategory[] = [
     },
     {
         id: 'legacy',
-        title: "Early Builders",
+        title: "Team Plata-o-Plomo",
         icon: Sprout,
         type: 'text',
         content: (
             <div className="text-white/70 leading-relaxed text-sm">
-                <p>People who helped shape BEC Vortex OS in its early experimental phase — through feedback, testing, design input, and belief in the project.</p>
+                <p>The architects behind FINOVA Financial OS.</p>
                 <div className="mt-4 space-y-2">
-                    <p className="text-white/50 text-xs uppercase tracking-widest">The OG BEC BillDesk Team</p>
-                    <p className="text-white">Soham Patil &middot; Krishna Bajantri &middot; Aditya Pattar</p>
-                    <p className="text-white/50 text-xs mt-2">The original BEC BillDesk team whose work laid the foundation for what BEC Vortex became.</p>
+                    <p className="text-white/50 text-xs uppercase tracking-widest">Plata-o-Plomo Hackathon Team</p>
+                    <p className="text-white">Sangam Gaddi &middot; Samarth Sugandhi &middot; Vikas Kannur &middot; Aditya Pattar</p>
                 </div>
             </div>
         )
@@ -123,8 +113,8 @@ const CREDITS_DATA: ContributorCategory[] = [
         type: 'text',
         content: (
             <div className="text-white/70 leading-relaxed text-sm space-y-4">
-                <p>BEC Vortex OS is built for the students and faculty of Basaveshwar Engineering College. The community drives the feedback, testing, and future direction of the platform.</p>
-                <p className="text-white/40 text-xs">Want to see your name here? Contribute to the project on <a href="https://github.com/sangam-gaddi/BecVortex" target="_blank" rel="noreferrer" className="text-white hover:underline">GitHub</a>.</p>
+                <p>FINOVA OS is built for the students and faculty of Basaveshwar Engineering College. The community drives the feedback, testing, and future direction of the platform.</p>
+                <p className="text-white/40 text-xs">Want to see your name here? Contribute to the project on <a href="https://github.com/sangam-gaddi/FINOVA" target="_blank" rel="noreferrer" className="text-white hover:underline">GitHub</a>.</p>
             </div>
         )
     },
@@ -136,13 +126,13 @@ const CREDITS_DATA: ContributorCategory[] = [
         content: (
             <div className="text-white/70 leading-relaxed text-sm space-y-6">
                 <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">The OG BEC BillDesk Team</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">Plata-o-Plomo</p>
                     <p>
-                        A huge shoutout to the original BEC BillDesk team who laid the groundwork —{" "}
-                        <span className="text-white font-bold">Soham Patil</span>,{" "}
-                        <span className="text-white font-bold">Krishna Bajantri</span>, and{" "}
-                        <span className="text-white font-bold">Aditya Pattar</span>.{" "}
-                        Their early work and vision inspired and shaped what BEC Vortex OS became.
+                        A huge shoutout to the team —{" "}
+                        <span className="text-white font-bold">Sangam Gaddi</span>,{" "}
+                        <span className="text-white font-bold">Samarth Sugandhi</span>,{" "}
+                        <span className="text-white font-bold">Vikas Kannur</span>, and{" "}
+                        <span className="text-white font-bold">Aditya Pattar</span>.
                     </p>
                 </div>
                 <div className="border-t border-white/10 pt-4">
@@ -218,7 +208,7 @@ const CREDITS_DATA: ContributorCategory[] = [
                 </div>
 
                 <div className="text-[10px] font-mono text-white/30 border-t border-white/10 pt-4">
-                    Full source available at <a href="https://github.com/sangam-gaddi/BecVortex" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white decoration-white/30">github.com/sangam-gaddi/BecVortex</a>
+                    Full source available at <a href="https://github.com/sangam-gaddi/FINOVA" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white decoration-white/30">github.com/sangam-gaddi/FINOVA</a>
                 </div>
             </div>
         )
@@ -329,7 +319,7 @@ export function CreditsModal({ onClose }: CreditsModalProps) {
                                             </p>
                                         </div>
                                         <a
-                                            href="https://github.com/sangam-gaddi/BecVortex"
+                                            href="https://github.com/sangam-gaddi/FINOVA"
                                             target="_blank"
                                             rel="noreferrer"
                                             onClick={() => feedback.click()}
@@ -442,7 +432,7 @@ export function CreditsModal({ onClose }: CreditsModalProps) {
                 {/* Footer */}
                 <div className="p-3 border-t border-white bg-black text-[10px] text-white/40 font-mono tracking-widest flex justify-between items-start px-4">
                     <span className="text-left text-[10px] leading-tight">
-                        <span className="uppercase">©2025 <a href={pkgMeta.homepage} target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">{pkgMeta.build.productName}</a> // <a href="https://instagram.com/mental.os" target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">BEC VORTEX OS</a> // <a href="https://facebook.com/dopepxls" target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">BEC Team</a> // BEC Studio</span><br />
+                        <span className="uppercase">©2025 <a href={pkgMeta.homepage} target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">{pkgMeta.build.productName}</a> // <a href="https://instagram.com/mental.os" target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">FINOVA OS</a> // <a href="https://facebook.com/dopepxls" target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">BEC Team</a> // BEC Studio</span><br />
                         {pkgMeta.build.productName} and its original concepts, architecture, and visual identity are protected by copyright.<br />
                         Source code is licensed under {pkgMeta.license}. See <a href="https://github.com/bec-team/bec-vortex-os.js/blob/main/LICENSE" target="_blank" rel="noreferrer" className="text-white hover:text-(--accent-user) decoration-white/30 hover:decoration-(--accent-user)">LICENSE</a> for details.
                     </span>

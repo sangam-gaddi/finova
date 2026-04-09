@@ -6,7 +6,7 @@ import { cn } from '@/components/os/components/ui/utils';
 
 const pkgMeta = {
     version: '0.8.5',
-    homepage: 'https://github.com/sangam-gaddi/BecVortex'
+    homepage: 'https://github.com/sangam-gaddi/FINOVA'
 };
 
 interface DevStatusWindowProps {

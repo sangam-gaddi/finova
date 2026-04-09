@@ -4,7 +4,7 @@ import { getCoreApps } from '@/components/os/config/appRegistry';
 const pkg = {
     version: '0.8.5',
     name: 'bec-vortex-os',
-    build: { productName: 'BEC VORTEX OS' }
+    build: { productName: 'FINOVA OS' }
 };
 
 const startupSound = '/os-assets/sounds/Runway Electric.opus';
@@ -212,7 +212,7 @@ export function createUserHome(username: string, permissions: string = 'drwxr-x-
         const documents = home.children.find((c: any) => c.name === 'Documents');
         if (documents) {
             documents.children.push(
-                { name: 'WELCOME.md', type: 'file', content: '# Welcome to BEC VORTEX OS\n\nYou are now using the most advanced web-based operating system simulation.\n\n## Getting Started\n1. Use the **Terminal** to explore the system at a deeper level.\n2. Check **Settings** to customize your experience.\n3. Explore `/var/log` if you are curious about system events.\n\n## Tips\n- Use `Ctrl+C` to interrupt running commands.\n- Use `sudo` for administrative tasks (root password: admin).\n', size: 300, owner: username, permissions: '-rw-r--r--' },
+                { name: 'WELCOME.md', type: 'file', content: '# Welcome to FINOVA OS\n\nYou are now using the most advanced web-based operating system simulation.\n\n## Getting Started\n1. Use the **Terminal** to explore the system at a deeper level.\n2. Check **Settings** to customize your experience.\n3. Explore `/var/log` if you are curious about system events.\n\n## Tips\n- Use `Ctrl+C` to interrupt running commands.\n- Use `sudo` for administrative tasks (root password: admin).\n', size: 300, owner: username, permissions: '-rw-r--r--' },
                 //{ name: 'PROJECT_NOTES.txt', type: 'file', content: 'TODO:\n- Fix the reality anchor stability glitch.\n- Investigate why /tmp is accumulating strange temp files.\n- Update the firewall rules.\n', size: 120, owner: username, permissions: '-rw-r--r--' },
                 { name: 'Notes', type: 'directory', children: [], owner: username, permissions: 'drwxr-xr-x' }
             );

@@ -1,4 +1,4 @@
-﻿{
+{
   "game.mainMenu.continue.label": "Continue",
   "game.mainMenu.continue.desc.canContinue": "Resume your previous loop",
   "game.mainMenu.continue.desc.noData": "No loop data found",
@@ -648,7 +648,7 @@
   "settings.placeholders.notificationsTitle": "Notifications",
   "settings.placeholders.notificationsDescription": "Notification center preferences coming soon.",
   "settings.placeholders.networkTitle": "Network",
-  "settings.placeholders.networkDescription": "Wi‑Fi and Bluetooth configurations coming soon.",
+  "settings.placeholders.networkDescription": "Wi-Fi and Bluetooth configurations coming soon.",
   "settings.placeholders.securityTitle": "Security & Privacy",
   "settings.placeholders.securityDescription": "Firewall, permissions, and privacy settings coming soon.",
   "settings.placeholders.storageTitle": "Storage",
@@ -698,7 +698,7 @@
   "settings.danger.confirmReset": "Confirm Reset",
   "settings.danger.hardResetTitle": "Hard Reset",
   "settings.danger.hardResetDescription": "Completely wipes all data including files, folders, and settings. This action cannot be undone.",
-  "settings.danger.hardResetWarning": "⚠️ All custom files and folders will be permanently deleted",
+  "settings.danger.hardResetWarning": "?? All custom files and folders will be permanently deleted",
   "settings.danger.factoryReset": "Factory Reset",
   "settings.danger.deleteEverything": "Yes, Delete Everything",
   "onboarding.steps.language.title": "Welcome to Aurora",
@@ -721,7 +721,7 @@
   "onboarding.theme.lightMode": "Light",
   "onboarding.theme.comingSoon": "Coming Soon",
   "onboarding.finishing.title": "You're all set!",
-  "onboarding.finishing.subtitle": "BEC VORTEX OS is ready. Redirecting you to the login screen...",
+  "onboarding.finishing.subtitle": "FINOVA OS is ready. Redirecting you to the login screen...",
   "onboarding.search.placeholder": "Search language...",
   "onboarding.search.noResults": "No languages found",
   "onboarding.validation.requiredFields": "Please fill in all required fields",

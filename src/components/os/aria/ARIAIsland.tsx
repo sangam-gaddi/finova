@@ -208,7 +208,7 @@ export function ARIAIsland() {
                 </div>
                 <div>
                   <span className="text-white font-bold text-sm tracking-wider">ARIA</span>
-                  <p className="text-white/60 text-[10px] leading-none mt-0.5">BEC Vortex Voice Assistant</p>
+                  <p className="text-white/60 text-[10px] leading-none mt-0.5">FINOVA Voice Assistant</p>
                 </div>
               </div>
               <button

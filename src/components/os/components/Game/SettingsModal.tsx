@@ -6,7 +6,7 @@ import { cn } from '@/components/os/components/ui/utils';
 
 const pkgMeta = {
     version: '0.8.5',
-    build: { productName: 'BEC VORTEX OS' }
+    build: { productName: 'FINOVA OS' }
 };
 import { feedback } from '@/components/os/services/soundFeedback';
 import { soundManager } from '@/components/os/services/sound';

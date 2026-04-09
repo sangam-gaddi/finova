@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, X, Volume2, Loader2 } from 'lucide-react';
@@ -7,7 +7,7 @@ import { Room, RoomEvent } from 'livekit-client';
 
 type ConState = 'idle' | 'connecting' | 'connected' | 'error';
 
-// ── Animated waveform bars (same as BEC BillDesk VoiceWaveform) ──
+// -- Animated waveform bars (same as BEC BillDesk VoiceWaveform) --
 function VoiceWaveform({ isActive, isSpeaking, size = 'md' }: {
   isActive: boolean; isSpeaking: boolean; size?: 'sm' | 'md' | 'lg';
 }) {
@@ -178,7 +178,7 @@ export function AriaApp() {
                 </div>
                 <div>
                   <h3 className="text-white font-semibold text-sm">ARIA</h3>
-                  <p className="text-white/70 text-xs">BEC Vortex Voice Assistant</p>
+                  <p className="text-white/70 text-xs">FINOVA Voice Assistant</p>
                 </div>
               </div>
               <button
