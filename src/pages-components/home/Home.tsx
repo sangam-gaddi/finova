@@ -1,6 +1,6 @@
 // @ts-nocheck
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import AuthPanel from '../../components/auth/AuthPanel';
 import Footer from '../../components/Footer/Footer';
@@ -70,22 +70,8 @@ const FEATURES = [
 ];
 
 const Home = () => {
-  const heroRef = useRef(null);
-  const tickerRef = useRef(null);
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    // Hero text animation
-    gsap.fromTo('.finova-hero-title', { opacity: 0, y: 60 }, {
-      opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', delay: 0.3
-    });
-    gsap.fromTo('.finova-hero-sub', { opacity: 0, y: 30 }, {
-      opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.7
-    });
-    gsap.fromTo('.finova-auth-wrapper', { opacity: 0, y: 40, scale: 0.95 }, {
-      opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.7)', delay: 1.1
-    });
 
     // Stat counters
     gsap.fromTo('.finova-stat', { opacity: 0, y: 30 }, {
@@ -99,13 +85,6 @@ const Home = () => {
       scrollTrigger: { trigger: '.finova-features-grid', start: 'top 75%' }
     });
 
-    // Ticker
-    if (tickerRef.current) {
-      gsap.to(tickerRef.current, {
-        xPercent: -50, duration: 20, ease: 'none', repeat: -1,
-      });
-    }
-
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
@@ -114,44 +93,62 @@ const Home = () => {
       <div className="page finova-home">
 
         {/* HERO */}
-        <section className="finova-hero" ref={heroRef}>
-          <div className="finova-hero-glow" />
-          <div className="finova-hero-grid" />
-
-          <div className="finova-hero-content">
-            <div className="finova-hero-text">
-              <div className="finova-badge">
-                <span className="finova-badge-dot" />
-                <span>AI-Powered Financial OS</span>
-              </div>
-              <h1 className="finova-hero-title">
-                Your Money.<br />
-                <span className="finova-gradient-text">Weaponized.</span>
-              </h1>
-              <p className="finova-hero-sub">
-                FINOVA is not a budget app. It's a full operating system for your financial life — with AI advisors, real-time analytics, Web3 integration, and a windowed desktop built for power users.
-              </p>
-              <div className="finova-hero-cta-row">
-                <Link href="/os" className="finova-cta-secondary">
-                  Explore Demo
-                </Link>
-              </div>
-            </div>
-
-            {/* Inline Auth Panel */}
-            <div className="finova-auth-wrapper">
-              <AuthPanel />
-            </div>
+        <section className="hero">
+          <div className="hero-img">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            >
+              <source src="/toxic-hero.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
-          {/* Ticker */}
-          <div className="finova-ticker-outer">
-            <div className="finova-ticker" ref={tickerRef}>
-              {[...Array(3)].map((_, i) => (
-                <span key={i} className="finova-ticker-inner">
-                  TRACK • SAVE • INVEST • GUARD • SCAN • VORA AI • WEB3 • COMMAND CENTER •&nbsp;
-                </span>
-              ))}
+          <div className="hero-header">
+            <h1>
+              FINOVA <br /> OS
+            </h1>
+            <p>Shaping the Future of Personal Finance with AI</p>
+            <div className="stickers">
+              <img src="/stickers.png" alt="" />
+            </div>
+            <button>
+              <Link href="/os">Enter FINOVA OS</Link>
+            </button>
+          </div>
+
+          <div className="news-article">
+            <div className="news-article-title">
+              <p className="primary">
+                AI Finance Advisors Surge: <br /> Smarter Budgets, Better Returns
+              </p>
+            </div>
+            <div className="news-article-info">
+              <p>7.1.2024</p>
+              <p>Finance</p>
+            </div>
+          </div>
+        </section>
+
+        {/* LOGIN / SIGNUP */}
+        <section className="finova-auth-section">
+          <div className="finova-auth-section-inner">
+            <div className="finova-auth-section-copy">
+              <h2 className="finova-section-title">Login or Create Your Account</h2>
+              <p className="finova-section-sub">
+                Jump into FINOVA OS with your existing account or create a new one in under a minute.
+              </p>
+            </div>
+            <div className="finova-auth-standalone">
+              <AuthPanel />
             </div>
           </div>
         </section>

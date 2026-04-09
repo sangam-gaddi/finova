@@ -1,9 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Mic, MicOff, X } from 'lucide-react';
-import { RoomContext, RoomAudioRenderer } from '@livekit/components-react';
 import { Room, RoomEvent } from 'livekit-client';
 
 type ConState = 'idle' | 'connecting' | 'connected' | 'error';
@@ -53,20 +52,37 @@ export function ARIAIsland() {
     : isConnected                    ? 'Ready'
     : 'ARIA';
 
-  // ── Connect to LiveKit ──────────────────────────────────────────────────────
+  // ── Connect to LiveKit ────────────────────────────────────────────
   const connect = useCallback(async () => {
     if (state !== 'idle' && state !== 'error') return;
     setState('connecting');
     setErrorMsg('');
     try {
       const res = await fetch('/api/aria/connection-details', {
-        method: 'POST', credentials: 'include',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          roomName: 'finova-aria',
+          participantName: `user-${Date.now()}`,
+          metadata: JSON.stringify({ app: 'FINOVA-ARIA' }),
+        }),
       });
-      if (!res.ok) {
-        const d = await res.json();
-        throw new Error(d.error || 'Failed to connect');
+
+      const raw = await res.text();
+      let payload: any;
+      try {
+        payload = raw ? JSON.parse(raw) : {};
+      } catch {
+        throw new Error('ARIA endpoint returned invalid JSON. Check /api/aria/connection-details.');
       }
-      const { serverUrl, participantToken } = await res.json();
+      if (!res.ok) {
+        throw new Error(payload?.error || 'Failed to get ARIA connection details');
+      }
+
+      const lkUrl = payload?.serverUrl;
+      const token = payload?.participantToken;
+      if (!lkUrl || !token) throw new Error('Missing LiveKit serverUrl or participantToken in ARIA response');
 
       room.on(RoomEvent.ActiveSpeakersChanged, (speakers) => {
         setUserSpeaking(speakers.some(s => s.isLocal));
@@ -83,16 +99,17 @@ export function ARIAIsland() {
         setState('idle'); setAriaSpeaking(false); setUserSpeaking(false);
       });
 
-      await room.connect(serverUrl, participantToken, { autoSubscribe: true });
+      await room.connect(lkUrl, token, { autoSubscribe: true });
       await room.localParticipant.setMicrophoneEnabled(true);
       setState('connected');
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : 'Connection failed');
+      const msg = err instanceof Error ? err.message : 'Connection failed';
+      setErrorMsg(msg);
       setState('error');
     }
   }, [state, room]);
 
-  // ── Pill click: first click starts + expands, subsequent clicks toggle panel ─
+  // ── Pill click: first click starts + expands, subsequent toggle panel ─
   const handlePillClick = useCallback(async () => {
     if (!isConnected && !isConnecting) {
       setOpen(true);
@@ -121,12 +138,11 @@ export function ARIAIsland() {
   useEffect(() => () => { room.disconnect(); }, [room]);
 
   return (
-    // Fixed overlay — top center, above all windows
     <div
       className="fixed top-7 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
       style={{ zIndex: 9999 }}
     >
-      {/* ── Persistent jelly pill ──────────────────────────────────────────── */}
+      {/* ── Persistent jelly pill ──────────────────────────────────────── */}
       <motion.button
         onClick={handlePillClick}
         className="pointer-events-auto relative flex items-center gap-3 px-4 py-2.5 select-none focus:outline-none"
@@ -134,7 +150,7 @@ export function ARIAIsland() {
         title="Open ARIA voice assistant"
         style={{ filter: 'drop-shadow(0 8px 32px rgba(109,40,217,0.60))' }}
       >
-        {/* Jelly morphing blob — matches VORA style */}
+        {/* Jelly morphing blob */}
         <motion.div
           className="absolute inset-0 rounded-[999px]"
           style={{
@@ -164,12 +180,12 @@ export function ARIAIsland() {
           animate={{ opacity: [0.2, 0.45, 0.2] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         />
-        {/* Logo */}
+        {/* Icon */}
         <div className="relative z-10 w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white/10 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/os-assets/ai/aria.png" alt="ARIA" className="w-6 h-6 object-contain" draggable={false} />
         </div>
-        {/* Content */}
+        {/* Label */}
         <div className="relative z-10 flex items-center gap-2.5">
           {isConnecting ? (
             <motion.div
@@ -189,7 +205,7 @@ export function ARIAIsland() {
         </div>
       </motion.button>
 
-      {/* ── Expanded panel — drops down from top center ────────────────────── */}
+      {/* ── Expanded panel ────────────────────────────────────────────── */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -218,6 +234,16 @@ export function ARIAIsland() {
                 <X className="w-3.5 h-3.5 text-white" />
               </button>
             </div>
+
+            {/* Error state */}
+            {state === 'error' && (
+              <div className="px-4 py-2 bg-red-900/30 border-b border-red-500/20">
+                <p className="text-xs text-red-300">{errorMsg}</p>
+                {errorMsg.includes('NEXT_PUBLIC_LIVEKIT_URL') && (
+                  <p className="text-[10px] text-red-400/70 mt-0.5">Add NEXT_PUBLIC_LIVEKIT_URL to .env.local</p>
+                )}
+              </div>
+            )}
 
             {/* Waveform */}
             <div className="flex flex-col items-center gap-1 py-4">
@@ -292,13 +318,6 @@ export function ARIAIsland() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* LiveKit audio renderer — invisible, required for playback */}
-      {isConnected && (
-        <RoomContext.Provider value={room}>
-          <RoomAudioRenderer />
-        </RoomContext.Provider>
-      )}
     </div>
   );
 }

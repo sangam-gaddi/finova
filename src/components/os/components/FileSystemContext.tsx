@@ -183,10 +183,10 @@ export function FileSystemProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.INSTALLED_APPS);
       if (stored) {
-        const parsed: string[] = JSON.parse(stored);
-        // Always merge stored set with current CORE_APP_IDS so new core apps appear immediately
-        const merged = new Set([...CORE_APP_IDS, ...parsed]);
-        return merged;
+        const saved = new Set<string>(JSON.parse(stored));
+        // Keep persisted installs but always include current core apps.
+        CORE_APP_IDS.forEach((id) => saved.add(id));
+        return saved;
       }
     } catch (e) {
       console.error("Failed to load installed apps:", e);

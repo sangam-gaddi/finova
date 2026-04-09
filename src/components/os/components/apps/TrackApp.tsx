@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
-import { PlusCircle, Loader2, AlertTriangle, X, CalendarIcon } from 'lucide-react';
+import { PlusCircle, Loader2, AlertTriangle, X, CalendarIcon, Trash2 } from 'lucide-react';
 import { useFinova } from './FinovaContext';
 
 const EXPENSE_CATEGORIES = ['Food', 'Transport', 'Shopping', 'Utilities', 'Entertainment', 'Health', 'Education', 'Rent', 'Investment', 'Other', 'Custom'];
@@ -121,6 +121,20 @@ export function Track() {
       invalidateTransactions();
     } catch (err: any) { console.error(err); }
     finally { setSaving(false); }
+  };
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      const res = await fetch(`/api/transactions/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete');
+      
+      // Optimistically update
+      setTransactions((prev) => prev.filter((t) => t._id !== id));
+      invalidateTransactions();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const totalExpenses = transactions.filter((t) => t.type === 'expense').reduce((a, t) => a + t.amount, 0);
@@ -305,13 +319,18 @@ export function Track() {
                     <span className="track-tag">{new Date(tx.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</span>
                   </div>
                 </div>
-                <div className="track-row-right">
-                  <span className={`track-row-amount ${tx.type === 'income' ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {tx.type === 'income' ? '+' : '-'}₹{tx.amount.toLocaleString('en-IN')}
-                  </span>
-                  <span className="track-row-mood" title={tx.mood}>
-                    {tx.mood === 'needed' ? '✅' : tx.mood === 'impulse' ? '🔥' : '😐'}
-                  </span>
+                <div className="track-row-right" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.75rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
+                    <span className={`track-row-amount ${tx.type === 'income' ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {tx.type === 'income' ? '+' : '-'}₹{tx.amount.toLocaleString('en-IN')}
+                    </span>
+                    <span className="track-row-mood" title={tx.mood}>
+                      {tx.mood === 'needed' ? '✅' : tx.mood === 'impulse' ? '🔥' : '😐'}
+                    </span>
+                  </div>
+                  <button onClick={(e) => handleDelete(tx._id, e)} className="p-1.5 text-white/20 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors" title="Delete transaction">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </motion.div>
             ))}

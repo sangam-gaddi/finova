@@ -68,11 +68,20 @@ export function AriaApp() {
       const res = await fetch(`${API_BASE}/api/aria/connection-details`, {
         method: 'POST', credentials: 'include',
       });
-      if (!res.ok) {
-        const d = await res.json();
-        throw new Error(d.error || 'Failed to get connection details');
+      const raw = await res.text();
+      let payload: any;
+      try {
+        payload = raw ? JSON.parse(raw) : {};
+      } catch {
+        throw new Error('ARIA endpoint returned invalid JSON. Check /api/aria/connection-details.');
       }
-      const { serverUrl, participantToken } = await res.json();
+      if (!res.ok) {
+        throw new Error(payload?.error || 'Failed to get connection details');
+      }
+      const { serverUrl, participantToken } = payload;
+      if (!serverUrl || !participantToken) {
+        throw new Error('Missing serverUrl or participantToken in ARIA response');
+      }
 
       room.on(RoomEvent.ActiveSpeakersChanged, (speakers) => {
         setUserSpeaking(speakers.some(s => s.isLocal));

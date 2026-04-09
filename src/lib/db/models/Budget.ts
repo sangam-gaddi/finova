@@ -1,4 +1,4 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose, { Schema, model, models } from 'mongoose';
 
 export interface IBudget {
   _id: string;
@@ -21,4 +21,4 @@ const BudgetSchema = new Schema<IBudget>(
 
 BudgetSchema.index({ userId: 1, category: 1, month: 1 }, { unique: true });
 
-export const Budget = models.Budget || model<IBudget>('Budget', BudgetSchema);
+export const Budget = (models.Budget as mongoose.Model<IBudget>) || model<IBudget>('Budget', BudgetSchema);

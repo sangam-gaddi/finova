@@ -26,19 +26,7 @@ export function useVORA({ onOsCommand, provider = 'ollama', model }: UseVORAOpti
 
   // ── Check VORA online status on mount ────────────────────────────
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch('/api/agent/status');
-        if (!cancelled) {
-          const data = await res.json();
-          setStatus(data.online && data.modelAvailable ? 'online' : 'offline');
-        }
-      } catch {
-        if (!cancelled) setStatus('offline');
-      }
-    })();
-    return () => { cancelled = true; };
+    setStatus('online');
   }, []);
 
   const sendMessage = useCallback(
@@ -72,7 +60,7 @@ export function useVORA({ onOsCommand, provider = 'ollama', model }: UseVORAOpti
       abortRef.current = controller;
 
       try {
-        const res = await fetch('/api/agent/chat', {
+        const res = await fetch('/api/ai/vora', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ messages: historyRef.current, provider: providerRef.current, model: modelRef.current }),
@@ -85,7 +73,7 @@ export function useVORA({ onOsCommand, provider = 'ollama', model }: UseVORAOpti
           throw new Error(data.error || 'VORA returned an error.');
         }
 
-        const reply = data.reply as string;
+        const reply = data.message as string;
         historyRef.current = [...historyRef.current, { role: 'assistant', content: reply }];
 
         // Replace loading bubble with real reply

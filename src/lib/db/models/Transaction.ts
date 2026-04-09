@@ -1,4 +1,4 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose, { Schema, model, models } from 'mongoose';
 
 export type TransactionCategory =
   | 'Food' | 'Transport' | 'Shopping' | 'Utilities' | 'Entertainment'
@@ -36,4 +36,4 @@ const TransactionSchema = new Schema<ITransaction>(
   { timestamps: true }
 );
 
-export const Transaction = models.Transaction || model<ITransaction>('Transaction', TransactionSchema);
+export const Transaction = (models.Transaction as mongoose.Model<ITransaction>) || model<ITransaction>('Transaction', TransactionSchema);

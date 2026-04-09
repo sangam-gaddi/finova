@@ -4,12 +4,19 @@ import { connectToDatabase } from '@/lib/db/mongoose';
 import { Transaction } from '@/lib/db/models/Transaction';
 import { User } from '@/lib/db/models/User';
 
-// OpenRouter models — in priority order
-const OPENROUTER_MODELS = [
-  'nvidia/nemotron-3-super-120b-a12b:free',
-  'nvidia/llama-nemotron-embed-vl-1b-v2:free',
-  'qwen/qwen3-next-80b-a3b-instruct:free',
-];
+const DEFAULT_OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'nvidia/nemotron-3-nano-30b-a3b:free';
+
+function getOpenRouterModels(preferredModel?: string): string[] {
+  return [
+    preferredModel,
+    DEFAULT_OPENROUTER_MODEL,
+    'nvidia/nemotron-3-nano-30b-a3b:free',
+    'meta-llama/llama-3.3-70b-instruct:free',
+    'arcee-ai/trinity-mini:free',
+    'arcee-ai/trinity-large-preview:free',
+    'google/gemma-3-27b-it:free',
+  ].filter((v, i, arr): v is string => !!v && arr.indexOf(v) === i);
+}
 
 async function callOpenRouter(messages: any[], model: string): Promise<string> {
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -45,10 +52,13 @@ export async function POST(req: NextRequest) {
     const session = await getSession();
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const { messages } = await req.json();
+    const { messages, provider, model } = await req.json();
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: 'messages array required' }, { status: 400 });
     }
+
+    const requestedProvider = provider === 'ollama' ? 'ollama' : 'openrouter';
+    const requestedModel = typeof model === 'string' && model.trim() ? model.trim() : undefined;
 
     await connectToDatabase();
 
@@ -59,18 +69,18 @@ export async function POST(req: NextRequest) {
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-    const recentTx = await Transaction.find({ userId: session.userId })
+    const recentTx = await (Transaction as any).find({ userId: session.userId })
       .sort({ date: -1 })
       .limit(15)
       .lean() as any[];
 
-    const monthlyTotals = await Transaction.aggregate([
+    const monthlyTotals = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, date: { $gte: startOfMonth }, type: 'expense' } },
       { $group: { _id: '$category', total: { $sum: '$amount' } } },
       { $sort: { total: -1 } },
     ]);
 
-    const totalMonthIncome = await Transaction.aggregate([
+    const totalMonthIncome = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, date: { $gte: startOfMonth }, type: 'income' } },
       { $group: { _id: null, total: { $sum: '$amount' } } },
     ]);
@@ -108,8 +118,12 @@ ${contextSummary}`;
     let response = '';
     let lastError = '';
 
+    // For now FINOVA VORA serves cloud inference path and falls back across known-good models.
+    // If Local is selected in UI, use requested model as first preference when provided.
+    const modelCandidates = getOpenRouterModels(requestedProvider === 'openrouter' ? requestedModel : undefined);
+
     // Try OpenRouter models in order
-    for (const model of OPENROUTER_MODELS) {
+    for (const model of modelCandidates) {
       try {
         response = await callOpenRouter(llmMessages, model);
         if (response) break;
@@ -120,39 +134,12 @@ ${contextSummary}`;
       }
     }
 
-    // Ollama fallback
-    if (!response && process.env.VORA_AGENT_URL) {
-      try {
-        const ollamaPrompt = llmMessages.map((m) =>
-          `${m.role === 'system' ? 'System' : m.role === 'user' ? 'User' : 'VORA'}: ${m.content}`
-        ).join('\n\n') + '\n\nVORA:';
-
-        const ollamaRes = await fetch(`${process.env.VORA_AGENT_URL}/api/generate`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: process.env.VORA_MODEL || 'qwen3:8b',
-            prompt: ollamaPrompt,
-            stream: false,
-            options: { num_predict: 600, temperature: 0.7 },
-          }),
-          signal: AbortSignal.timeout(15000),
-        });
-        if (ollamaRes.ok) {
-          const ollamaData = await ollamaRes.json();
-          response = ollamaData.response?.trim() || '';
-        }
-      } catch (e) {
-        console.warn('Ollama fallback failed:', e);
-      }
-    }
-
     if (!response) {
       console.error('All VORA models failed. Last error:', lastError);
-      response = "I'm having connectivity issues right now. All my AI models are temporarily unavailable. Please check your OpenRouter API key and try again in a moment.";
+      response = "I'm having trouble connecting to my AI models right now. This is usually a temporary rate-limit issue — please try again in 30 seconds.";
     }
 
-    return NextResponse.json({ message: response, model: response ? 'ok' : 'fallback' });
+    return NextResponse.json({ message: response, provider: 'openrouter', model: response ? (requestedModel || DEFAULT_OPENROUTER_MODEL) : 'fallback' });
   } catch (error) {
     console.error('VORA route error:', error);
     return NextResponse.json({ error: 'VORA failed to respond' }, { status: 500 });

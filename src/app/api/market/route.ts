@@ -7,18 +7,18 @@ const CRYPTO_IDS = [
   'matic-network', 'chainlink',
 ];
 
-// Yahoo Finance symbols for Indian + US stocks
+// Yahoo Finance symbols for Global + US stocks
 const STOCK_SYMBOLS = [
-  '^NSEI',          // Nifty 50
-  '^BSESN',         // Sensex
-  'RELIANCE.NS',    // Reliance
-  'TCS.NS',         // TCS
-  'INFY.NS',        // Infosys
-  'HDFCBANK.NS',    // HDFC Bank
-  'ICICIBANK.NS',   // ICICI Bank
-  'WIPRO.NS',       // Wipro
-  'BAJFINANCE.NS',  // Bajaj Finance
-  'ADANIENT.NS',    // Adani Enterprises
+  '^GSPC',          // S&P 500
+  '^NDX',           // Nasdaq 100
+  'AAPL',           // Apple
+  'MSFT',           // Microsoft
+  'NVDA',           // Nvidia
+  'TSLA',           // Tesla
+  'AMZN',           // Amazon
+  'META',           // Meta
+  'GOOGL',          // Alphabet
+  'BRK-B',          // Berkshire
 ];
 
 // Cache to avoid hammering APIs
@@ -33,7 +33,7 @@ async function fetchCrypto() {
 
   const apiKey = process.env.COINGECKO_API_KEY;
   const ids = CRYPTO_IDS.join(',');
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&ids=${ids}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
 
   const res = await fetch(url, {
     headers: apiKey ? { 'x-cg-demo-api-key': apiKey } : {},
@@ -124,11 +124,11 @@ export async function GET(req: NextRequest) {
         console.error('Yahoo Finance error:', e);
         // Fallback mock
         stockData = [
-          { symbol: '^NSEI', name: 'Nifty 50', price: 24850, change: 1.24, type: 'index' },
-          { symbol: '^BSESN', name: 'BSE Sensex', price: 82150, change: 0.98, type: 'index' },
-          { symbol: 'RELIANCE.NS', name: 'Reliance Industries', price: 2954, change: -0.45, type: 'stock' },
-          { symbol: 'TCS.NS', name: 'TCS', price: 4120, change: 0.72, type: 'stock' },
-          { symbol: 'INFY.NS', name: 'Infosys', price: 1842, change: 2.31, type: 'stock' },
+          { symbol: '^GSPC', name: 'S&P 500', price: 5400.25, change: 1.24, type: 'index' },
+          { symbol: '^NDX', name: 'Nasdaq 100', price: 19800.5, change: 0.98, type: 'index' },
+          { symbol: 'AAPL', name: 'Apple Inc.', price: 185.2, change: -0.45, type: 'stock' },
+          { symbol: 'MSFT', name: 'Microsoft', price: 420.5, change: 0.72, type: 'stock' },
+          { symbol: 'NVDA', name: 'Nvidia Corp.', price: 125.8, change: 2.31, type: 'stock' },
         ];
       }
     }

@@ -343,7 +343,7 @@
 .invest-sip-inputs { display: flex; flex-direction: column; gap: 1.25rem; }
 .invest-sip-field { display: flex; flex-direction: column; gap: 0.5rem; }
 .invest-sip-field label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); font-weight: 600; }
-.invest-slider { width: 100%; accent-color: var(--blue); cursor: pointer; height: 4px; background: rgba(255,255,255,0.1); border-radius: 100px; outline: none; -webkit-appearance: none; }
+.invest-slider { width: 100%; accent-color: var(--blue); cursor: pointer; height: 4px; background: rgba(255,255,255,0.1); border-radius: 100px; outline: none; appearance: none; -webkit-appearance: none; }
 .invest-sip-result { display: flex; flex-direction: column; gap: 0.75rem; background: var(--fa); border: 1px solid rgba(59,130,246,0.2); border-radius: 1rem; padding: 1.25rem; }
 .invest-sip-metric { display: flex; justify-content: space-between; align-items: center; }
 .invest-sip-metric span:first-child { font-size: 0.85rem; color: var(--muted); }

@@ -12,7 +12,7 @@ export async function GET() {
 
     await connectToDatabase();
 
-    const user = await User.findById(session.userId).select('monthlyIncome');
+    const user = await (User as any).findById(session.userId).select('monthlyIncome');
     const monthlyIncome = user?.monthlyIncome || 0;
 
     // This month
@@ -21,7 +21,7 @@ export async function GET() {
     const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
 
     // Category breakdown (this month, expenses)
-    const categoryBreakdown = await Transaction.aggregate([
+    const categoryBreakdown = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, type: 'expense', date: { $gte: startOfMonth, $lte: endOfMonth } } },
       { $group: { _id: '$category', total: { $sum: '$amount' }, count: { $sum: 1 } } },
       { $sort: { total: -1 } },
@@ -31,7 +31,7 @@ export async function GET() {
     const sevenWeeksAgo = new Date();
     sevenWeeksAgo.setDate(sevenWeeksAgo.getDate() - 49);
 
-    const weeklySpending = await Transaction.aggregate([
+    const weeklySpending = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, type: 'expense', date: { $gte: sevenWeeksAgo } } },
       {
         $group: {
@@ -44,7 +44,7 @@ export async function GET() {
     ]);
 
     // Totals this month
-    const monthlyTotals = await Transaction.aggregate([
+    const monthlyTotals = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, date: { $gte: startOfMonth, $lte: endOfMonth } } },
       { $group: { _id: '$type', total: { $sum: '$amount' } } },
     ]);
@@ -56,7 +56,7 @@ export async function GET() {
 
     // Budget adherence
     const currentMonth = now.toISOString().slice(0, 7);
-    const budgets = await Budget.find({ userId: session.userId, month: currentMonth }).lean();
+    const budgets = await (Budget as any).find({ userId: session.userId, month: currentMonth }).lean();
 
     let budgetScore = 100;
     for (const budget of budgets) {
@@ -75,7 +75,7 @@ export async function GET() {
     healthScore = Math.round(Math.min(100, Math.max(0, healthScore)));
 
     // Mood breakdown
-    const moodBreakdown = await Transaction.aggregate([
+    const moodBreakdown = await (Transaction as any).aggregate([
       { $match: { userId: session.userId, type: 'expense', date: { $gte: startOfMonth, $lte: endOfMonth } } },
       { $group: { _id: '$mood', total: { $sum: '$amount' }, count: { $sum: 1 } } },
     ]);

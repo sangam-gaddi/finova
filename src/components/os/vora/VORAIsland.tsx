@@ -15,7 +15,7 @@ import type { VoraProvider }       from './useVORA';
 import type { VoraOsCommand }      from '@/lib/agent/types';
 
 const OPENROUTER_MODELS = [
-  { id: 'nvidia/nemotron-3-nano-30b-a3b:free',      label: 'Nemotron 30B'    },
+  { id: 'nvidia/nemotron-3-nano-30b-a3b:free',      label: 'Nemotron 30B'   },
   { id: 'meta-llama/llama-3.3-70b-instruct:free',   label: 'Llama 3.3 70B'  },
   { id: 'arcee-ai/trinity-mini:free',               label: 'Trinity Mini'   },
   { id: 'arcee-ai/trinity-large-preview:free',      label: 'Trinity Large'  },

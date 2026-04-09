@@ -22,38 +22,79 @@ interface MarketData {
 }
 
 function SIPCalculator({ monthlyIncome }: { monthlyIncome: number }) {
-  const [amount, setAmount] = useState(Math.max(500, Math.round(monthlyIncome * 0.2)));
+  const [amount, setAmount] = useState(100);
   const [years, setYears] = useState(10);
   const [rate, setRate] = useState(12);
+  const [lumpSum, setLumpSum] = useState(0);
 
   const n = years * 12;
   const r = rate / 100 / 12;
-  const fv = r > 0 ? amount * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : amount * n;
-  const invested = amount * n;
-  const gains = fv - invested;
-  const returnsMultiple = invested > 0 ? (fv / invested).toFixed(1) : '1';
+  const sipFV = r > 0 ? amount * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : amount * n;
+  const lumpFV = lumpSum * Math.pow(1 + rate / 100, years);
+  const totalFV = sipFV + lumpFV;
+  const totalInvested = amount * n + lumpSum;
+  const totalGains = totalFV - totalInvested;
+  const returnsMultiple = totalInvested > 0 ? (totalFV / totalInvested).toFixed(2) : '1.00';
+  const sipBarPct = totalFV > 0 ? Math.round((sipFV / totalFV) * 100) : 50;
+
+  const PRESETS = [
+    { label: 'FD', rate: 7 },
+    { label: 'S&P 500', rate: 10.5 },
+    { label: 'Nasdaq', rate: 13.5 },
+    { label: 'BTC Avg', rate: 40 },
+  ];
 
   return (
     <div className="invest-sip-card">
-      <h3 className="invest-section-title">SIP Calculator</h3>
+      <h3 className="invest-section-title">💰 Wealth Simulator</h3>
+
+      {/* Benchmark quick-select */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {PRESETS.map((p) => (
+          <button
+            key={p.label}
+            onClick={() => setRate(p.rate)}
+            className={`text-[10px] px-2.5 py-1 rounded-full border transition-all font-medium ${
+              rate === p.rate
+                ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-300'
+                : 'border-white/10 text-white/40 hover:text-white/70 hover:border-white/20'
+            }`}
+          >
+            {p.label} ({p.rate}%)
+          </button>
+        ))}
+      </div>
 
       <div className="invest-sip-inputs">
         <div className="invest-sip-field">
-          <label>Monthly SIP (₹)</label>
+          <label>Initial Capital / Lump Sum ($)</label>
+          <input
+            type="number"
+            value={lumpSum}
+            onChange={(e) => setLumpSum(Math.max(0, Number(e.target.value)))}
+            className="invest-input"
+            min="0"
+            step="500"
+            placeholder="0"
+          />
+        </div>
+
+        <div className="invest-sip-field">
+          <label>Monthly Contribution ($)</label>
           <input
             type="number"
             value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            onChange={(e) => setAmount(Math.max(0, Number(e.target.value)))}
             className="invest-input"
-            min="500"
-            step="500"
+            min="0"
+            step="50"
           />
         </div>
 
         <div className="invest-sip-field">
           <label>Duration — <span className="text-blue-400 font-bold">{years} years</span></label>
           <input
-            type="range" min="1" max="30" value={years}
+            type="range" min="1" max="40" value={years}
             onChange={(e) => setYears(Number(e.target.value))}
             className="invest-slider"
           />
@@ -62,21 +103,37 @@ function SIPCalculator({ monthlyIncome }: { monthlyIncome: number }) {
         <div className="invest-sip-field">
           <label>Expected Return — <span className="text-emerald-400 font-bold">{rate}% p.a.</span></label>
           <input
-            type="range" min="6" max="25" value={rate}
+            type="range" min="1" max="60" step="0.5" value={rate}
             onChange={(e) => setRate(Number(e.target.value))}
             className="invest-slider"
           />
         </div>
       </div>
 
+      {/* SIP vs Lump Sum visual bar */}
+      <div className="mt-4 mb-3">
+        <div className="flex justify-between text-[10px] text-white/40 mb-1">
+          <span>SIP Growth</span>
+          <span>Lump Sum Growth</span>
+        </div>
+        <div className="h-2 rounded-full bg-white/5 overflow-hidden flex">
+          <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${sipBarPct}%` }} />
+          <div className="h-full bg-blue-500 transition-all duration-500" style={{ width: `${100 - sipBarPct}%` }} />
+        </div>
+        <div className="flex justify-between text-[10px] mt-1">
+          <span className="text-emerald-400">${Math.round(sipFV).toLocaleString('en-US')}</span>
+          <span className="text-blue-400">${Math.round(lumpFV).toLocaleString('en-US')}</span>
+        </div>
+      </div>
+
       <div className="invest-sip-result">
         <div className="invest-sip-metric">
-          <span>Amount Invested</span>
-          <span className="text-gray-300 font-semibold">₹{invested.toLocaleString('en-IN')}</span>
+          <span>Total Invested</span>
+          <span className="text-gray-300 font-semibold">${totalInvested.toLocaleString('en-US')}</span>
         </div>
         <div className="invest-sip-metric">
           <span>Total Gains</span>
-          <span className="text-emerald-400 font-bold">₹{Math.round(gains).toLocaleString('en-IN')}</span>
+          <span className="text-emerald-400 font-bold">+${Math.round(totalGains).toLocaleString('en-US')}</span>
         </div>
         <div className="invest-sip-metric">
           <span>Returns Multiple</span>
@@ -84,13 +141,16 @@ function SIPCalculator({ monthlyIncome }: { monthlyIncome: number }) {
         </div>
         <div className="invest-sip-metric invest-sip-metric--total">
           <span>Final Corpus</span>
-          <span className="text-white font-black text-lg">₹{Math.round(fv).toLocaleString('en-IN')}</span>
+          <span className="text-white font-black text-lg">${Math.round(totalFV).toLocaleString('en-US')}</span>
         </div>
       </div>
 
       <div className="invest-sip-tip">
         <span>💡</span>
-        <span>Start early — ₹{amount.toLocaleString('en-IN')}/mo for {years} years at {rate}% = <strong>₹{Math.round(fv).toLocaleString('en-IN')}</strong></span>
+        <span>
+          ${amount}/mo {lumpSum > 0 ? `+ $${lumpSum.toLocaleString()} lump sum ` : ''}
+          for {years}yr at {rate}% = <strong>${Math.round(totalFV).toLocaleString('en-US')}</strong>
+        </span>
       </div>
     </div>
   );
@@ -101,10 +161,10 @@ function AssetCard({ item, onClick }: { item: MarketItem; onClick?: () => void }
 
   const formatPrice = (p: number | null | undefined) => {
     const n = p ?? 0;
-    if (n >= 10000000) return `₹${(n / 10000000).toFixed(2)}Cr`;
-    if (n >= 100000) return `₹${(n / 100000).toFixed(2)}L`;
-    if (n >= 1000) return `₹${n.toLocaleString('en-IN')}`;
-    return `₹${n.toFixed(2)}`;
+    if (n >= 1000000000) return `$${(n / 1000000000).toFixed(2)}B`;
+    if (n >= 1000000) return `$${(n / 1000000).toFixed(2)}M`;
+    if (n >= 1000) return `$${n.toLocaleString('en-US')}`;
+    return `$${n.toFixed(2)}`;
   };
 
   return (
@@ -134,7 +194,7 @@ function AssetCard({ item, onClick }: { item: MarketItem; onClick?: () => void }
       <div className="invest-asset-price">{formatPrice(item.price)}</div>
       {item.marketCap && item.marketCap > 0 && (
         <div className="invest-asset-mcap">
-          MCap: ₹{(item.marketCap / 10000000).toFixed(0)}Cr
+          MCap: ${(item.marketCap / 1000000000).toFixed(1)}B
         </div>
       )}
     </motion.div>
@@ -170,9 +230,10 @@ function TickerTape({ items }: { items: MarketItem[] }) {
             <span className="invest-ticker-price">
               {(() => {
                 const p = item.price ?? 0;
-                if (p >= 100000) return `₹${(p / 100000).toFixed(2)}L`;
-                if (p >= 1000) return `₹${p.toLocaleString('en-IN')}`;
-                return `₹${p.toFixed(2)}`;
+                if (p >= 1000000000) return `$${(p / 1000000000).toFixed(2)}B`;
+                if (p >= 1000000) return `$${(p / 1000000).toFixed(2)}M`;
+                if (p >= 1000) return `$${p.toLocaleString('en-US')}`;
+                return `$${p.toFixed(2)}`;
               })()}
             </span>
             <span className={`invest-ticker-change ${(item.change ?? 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
@@ -234,7 +295,7 @@ export function InvestApp({ owner }: { owner?: string }) {
         body: JSON.stringify({
           messages: [{
             role: 'user',
-            content: `Give me a personalized 3-paragraph investment strategy for a ${risk} risk profile Indian investor. Include specific fund names (Nifty 50 index funds, HDFC, ICICI), recommended allocation percentages, and one actionable step to take this week. Be specific and direct.`
+            content: `Give me a personalized 3-paragraph global investment strategy for a ${risk} risk profile investor looking at US equities (S&P 500, Nasdaq 100) and highly liquid Crypto. Include specific ETF and stock names (SPY, QQQ, TSLA, BTC) allocating their monthly contributions, and one actionable step to take this week. Be specific and direct.`
           }]
         }),
       });
@@ -278,7 +339,7 @@ export function InvestApp({ owner }: { owner?: string }) {
             {(['stocks', 'crypto', 'sip', 'advisor'] as const).map((t) => (
               <button key={t} onClick={() => setView(t)}
                 className={`invest-tab ${view === t ? 'invest-tab--active' : ''}`}>
-                {t === 'stocks' ? '🇮🇳 Stocks' : t === 'crypto' ? '₿ Crypto' : t === 'sip' ? '📐 SIP' : '🧠 AI'}
+                {t === 'stocks' ? '🌎 Equities' : t === 'crypto' ? '₿ Crypto' : t === 'sip' ? '📐 Simulator' : '🧠 AI'}
               </button>
             ))}
           </div>

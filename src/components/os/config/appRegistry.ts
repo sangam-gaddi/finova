@@ -21,6 +21,9 @@ import {
   ScanLine,
   Shield,
   Bot,
+  Bell,
+  Zap,
+  Code2,
 } from 'lucide-react';
 import { AppMenuConfig, ContextMenuConfig } from '../types';
 
@@ -61,6 +64,9 @@ const VoraApp = dynamic(() => import('@/components/os/components/apps/VoraApp').
 const ReceiptScannerApp = dynamic(() => import('@/components/os/components/apps/ReceiptScannerApp').then((m) => m.ReceiptScannerApp), { ssr: false });
 const BudgetEnforcerApp = dynamic(() => import('@/components/os/components/apps/BudgetEnforcerApp').then((m) => m.BudgetEnforcerApp), { ssr: false });
 const InvestApp = dynamic(() => import('@/components/os/components/apps/InvestApp').then((m) => m.InvestApp), { ssr: false });
+const AlertsCenterApp = dynamic(() => import('@/components/os/components/apps/AlertsCenterApp').then((m) => m.AlertsCenterApp), { ssr: false });
+const TransactionDecoderApp = dynamic(() => import('@/components/os/components/apps/TransactionDecoderApp').then((m) => m.TransactionDecoderApp), { ssr: false });
+const AutomationBuilderApp = dynamic(() => import('@/components/os/components/apps/AutomationBuilderApp').then((m) => m.AutomationBuilderApp), { ssr: false });
 
 export interface AppMetadata {
   id: string;
@@ -375,6 +381,51 @@ export const APP_REGISTRY: Record<string, AppMetadata> = {
     size: 40,
     ramUsage: 100,
     defaultSize: { width: 600, height: 560 },
+  },
+  'finova-alerts': {
+    id: 'finova-alerts',
+    name: 'Alerts',
+    description: 'Smart financial notifications & budget warnings',
+    icon: Bell,
+    iconColor: 'from-violet-500 to-purple-600',
+    iconSolid: '#8b5cf6',
+    category: 'financial',
+    isCore: true,
+    component: AlertsCenterApp,
+    dockOrder: 26,
+    size: 20,
+    ramUsage: 80,
+    defaultSize: { width: 520, height: 560 },
+  },
+  'finova-decoder': {
+    id: 'finova-decoder',
+    name: 'TX Decoder',
+    description: 'AI-powered bank transaction decoder',
+    icon: Code2,
+    iconColor: 'from-amber-500 to-yellow-400',
+    iconSolid: '#f59e0b',
+    category: 'financial',
+    isCore: true,
+    component: TransactionDecoderApp,
+    dockOrder: 27,
+    size: 15,
+    ramUsage: 120,
+    defaultSize: { width: 560, height: 600 },
+  },
+  'finova-automation': {
+    id: 'finova-automation',
+    name: 'Automations',
+    description: 'Build IF-THEN financial automation rules',
+    icon: Zap,
+    iconColor: 'from-amber-400 to-orange-500',
+    iconSolid: '#f97316',
+    category: 'financial',
+    isCore: true,
+    component: AutomationBuilderApp,
+    dockOrder: 28,
+    size: 18,
+    ramUsage: 80,
+    defaultSize: { width: 560, height: 580 },
   },
 };
 
